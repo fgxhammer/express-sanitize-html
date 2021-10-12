@@ -1,8 +1,7 @@
 // Request body sanitize dirty content
 // Always put after body parser [express.json()]
 const sanitizeHtml = require('sanitize-html')
-const config = require('../config/sanitizer_rules/sanitize-request-body.config')
-const raygunClient = require('../src/lib/raygun/raygun-client').raygunClient
+const config = {}
 
 const sanitize = (val) => {
   if (typeof val !== 'string') {
@@ -13,25 +12,12 @@ const sanitize = (val) => {
     const dirty = val
     const clean = sanitizeHtml(val, config)
 
-    // Raygun report if sanitized
-    if (dirty !== clean) {
-      console.error(`SANITIZED | DIRTY: ${dirty} | CLEAN: ${clean}`)
-      const error = new Error({
-        message: 'Dirty html content sanitized',
-        dirty,
-        clean
-      })
-      raygunClient.send(error)
-    }
-
     return clean
   } catch (e) {
     console.error('Sanitization failed', val, e)
     const error = new Error({
       message: 'Failed to sanitize html',
-      html: val
     })
-    raygunClient.send(error)
     return val
   }
 }
