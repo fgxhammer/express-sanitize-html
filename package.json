@@ -1,0 +1,20 @@
+{
+  "name": "express-sanitize-html",
+  "version": "1.0.0",
+  "description": "Express middleware for sanitizing html in request body",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "middleware",
+    "express",
+    "hmtl",
+    "sanitize"
+  ],
+  "author": "Franz Gollhammer",
+  "license": "ISC",
+  "dependencies": {
+    "sanitize-html": "^2.5.1"
+  }
+}
