@@ -1,3 +1,3 @@
 # express-sanitize-html
 
-Express middleware for request body html sanitization.
+Simple express middleware prototype for request body html sanitization.
